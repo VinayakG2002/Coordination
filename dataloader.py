@@ -1,45 +1,67 @@
-import os
-from global_config import *
+import torch
+from torch.utils.data import Dataset
+from torch.nn.utils.rnn import pad_sequence
+import pickle
+import pandas as pd
+
+class DailyDialogueDataset(Dataset):
+    
+    def __init__(self, split, path):
+        
+        self.Speakers, self.InputSequence, self.InputMaxSequenceLength, \
+        self.ActLabels, self.EmotionLabels, self.trainId, self.testId, self.validId = pickle.load(open(path, 'rb'))
+        
+        if split == 'train':
+            self.keys = [x for x in self.trainId]
+        elif split == 'test':
+            self.keys = [x for x in self.testId]
+        elif split == 'valid':
+            self.keys = [x for x in self.validId]
+
+        self.len = len(self.keys)
+
+    def __getitem__(self, index):
+        conv = self.keys[index]
+        
+        return torch.LongTensor(self.InputSequence[conv]), \
+                torch.FloatTensor([[1,0] if x=='0' else [0,1] for x in self.Speakers[conv]]),\
+                torch.FloatTensor([1]*len(self.ActLabels[conv])), \
+                torch.LongTensor(self.ActLabels[conv]), \
+                torch.LongTensor(self.EmotionLabels[conv]), \
+                self.InputMaxSequenceLength[conv], \
+                conv
+
+    def __len__(self):
+        return self.len
+    
 
 
-def load_data(dpath, mode):
-    assert mode == 'train' or mode == 'test' or mode == 'validation'
-    dial_f = os.path.join(dpath, '{}/dialogues_{}.txt'.format(mode, mode))
-    act_f = os.path.join(dpath, '{}/dialogues_act_{}.txt'.format(mode, mode))
-    emo_f = os.path.join(dpath, '{}/dialogues_emotion_{}.txt'.format(mode, mode))
-    dlg_data, act_data, emo_data = [], [], []
-    with open(act_f, 'r') as f:
-        lines = f.readlines()
-        for l in lines:
-            acts = [int(d) - 1 for d in l.strip().split(' ')]  # -1 for range [0,3]
-            act_data.append(acts)
-    with open(emo_f, 'r') as f:
-        lines = f.readlines()
-        for l in lines:
-            emos = [int(d) for d in l.strip().split(' ')]
-            emo_data.append(emos)
-    with open(dial_f, 'r', encoding='utf8') as f:
-        lines = f.readlines()
-        for l in lines:
-            turns = [t.strip().split(' ') for t in l.split(STOKEN)]
-            if turns[-1] == ['']:
-                turns = turns[:-1]
-            dlg_data.append(turns)
+class DailyDialoguePadCollate:
 
-    return dlg_data, act_data, emo_data
+    def __init__(self, dim=0):
+        self.dim = dim
 
+    def pad_tensor(self, vec, pad, dim):
 
-def read_pol_data(mode):
-    pol_f = os.path.join(dpath, '{}/dialogues_politeness_{}.txt'.format(mode, mode))
-    with open(pol_f, 'r') as f:
-        lines = f.readlines()
-        politeness_values, pol_count = [], 0
-        for l in lines:
-            pols = l.strip().split(', ')
-            pols_format = []
-            for p in pols:
-                pol_count += 1
-                pols_format.append(float(p.replace('[', '').replace(']', '')))
-            politeness_values.append(pols_format)
-        print('Total pol utt count {} in {}'.format(pol_count, mode))
-    return politeness_values
+        pad_size = list(vec.shape)
+        pad_size[dim] = pad - vec.size(dim)
+        return torch.cat([vec, torch.zeros(*pad_size).type(torch.LongTensor)], dim=dim)
+
+    def pad_collate(self, batch):
+        
+        # find longest sequence
+        max_len = max(map(lambda x: x.shape[self.dim], batch))
+        
+        # pad according to max_len
+        batch = [self.pad_tensor(x, pad=max_len, dim=self.dim) for x in batch]
+        
+        # stack all
+        return torch.stack(batch, dim=0)
+    
+    def __call__(self, batch):
+        dat = pd.DataFrame(batch)
+        
+        return [self.pad_collate(dat[i]).transpose(1, 0).contiguous() if i==0 else \
+                pad_sequence(dat[i]) if i == 1 else \
+                pad_sequence(dat[i], True) if i < 5 else \
+                dat[i].tolist() for i in dat]
