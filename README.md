@@ -4,7 +4,9 @@ I however still have to plot the graphs and consider the cases of no emotion and
 # Theory
 Hypothesis 1- When coordination is high (coordiantion>0.1) between the two speakers, eventually the replies have similar emotions.
 I tested my hypothesis using the following 4 cases:
+
 Case 1- The initial emotions of both the speakers are different and we find out how many of them turn out to be same after the conversation.
+
 Case 2- The initial emotions of both the speakers are same and we find out how many of them turn out to be same after the conversation.
 Case 3- The initial emotions of both the speakers are different and we find out how many of them turn out to be similar after the conversation.
 Case 4- The initial emotions of both the speakers are same and we find out how many of them turn out to be similar after the conversation.
