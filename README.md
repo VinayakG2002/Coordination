@@ -26,13 +26,21 @@ Case 2- The initail emotion of both the speakers is to be positive but the final
 **Hypothesis 1**-
 
 Case 1- 40% of the speakers had the same emotion after the conversation.
+
 ![Alt text](images\image1.png?raw=true "Title")
+
 Case 2- 66.05% of the speakers had the same emotion after these conversations.
+
 ![Alt text](images\image2.png?raw=true "Title")
+
 Case 3- 40% of the speakers had the similar emotion after the conversation.
+
 ![Alt text](images\image3.png?raw=true "Title")
+
 Case 4- 66.05% of the speakers had the similar emotion after these conversations.
+
 ![Alt text](images\image4.png?raw=true "Title")
+
 We practically saw that the results of Case 1 and Case 3 and the results of Case 2 and Case 4 are exactly the same and thus we can say that here we see no outputs which are similar but all are same.
 
 **Hypothesis 2**-
