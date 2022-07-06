@@ -27,7 +27,7 @@ Case 2- The initail emotion of both the speakers is to be positive but the final
 
 Case 1- 40% of the speakers had the same emotion after the conversation.
 
-![Alt text](images\image1.png?raw=true "Title")
+![Alt text](images/image1.png?raw=true "Title")
 
 Case 2- 66.05% of the speakers had the same emotion after these conversations.
 
