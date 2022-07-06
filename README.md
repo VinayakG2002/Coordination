@@ -70,5 +70,3 @@ Case 3- 25.53% (from 12 utterances)
 Case 1- 40.54%
 
 Case 2- 75%
-
-I have made shared the plots in code to make clear how the no-emotion feature dominates as most of the cases are of this feature.
