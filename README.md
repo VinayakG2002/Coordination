@@ -31,15 +31,11 @@ Case 1- 40% of the speakers had the same emotion after the conversation.
 
 Case 2- 66.05% of the speakers had the same emotion after these conversations.
 
-![Alt text](images/image2.png?raw=true "Title")
-
 Case 3- 40% of the speakers had the similar emotion after the conversation.
 
-![Alt text](images/image3.png?raw=true "Title")
+![Alt text](images/image2.png?raw=true "Title")
 
 Case 4- 66.05% of the speakers had the similar emotion after these conversations.
-
-![](images/image4.png)
 
 We practically saw that the results of Case 1 and Case 3 and the results of Case 2 and Case 4 are exactly the same and thus we can say that here we see no outputs which are similar but all are same.
 
@@ -47,7 +43,11 @@ We practically saw that the results of Case 1 and Case 3 and the results of Case
 
 Case 1- Even If the coordination of any one of the speakers is less than -0.1, the final emotion of both the speakers at the end of the conversation is negative or no emotion in 57.06% of the cases.
 
+![Alt text](images/image3.png?raw=true "Title")
+
 Case 2- Even if both the speakers have a positive emotion at the starting of the conversation, 56.63% times we can see that the eventual emotions turn out to be negative or no emotion.
+
+![](images/image4.png)
 
 I think by we got a good amount of cases which satisfy hypothesis 2
 
