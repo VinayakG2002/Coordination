@@ -70,3 +70,29 @@ Case 3- 25.53% (from 12 utterances)
 Case 1- 40.54%
 
 Case 2- 75%
+
+
+
+# New approach
+First we split the individual dialogs into multiple dialogs if the following condition is satisfied:
+
+$$emotion_{i-2} != emotion_{i} {\ \  } and {\ \ }emotion_{i}=emotion_{i-1}$$
+
+This gives us many more dialoges to use in the coordination function.
+
+# Results
+
+**Hypothesis 1**
+
+Case 1-  61.16% of the conversations have same final emotion in the whole dataset
+![](images/new_same.png)
+![](images/new_same_percent.png)
+Case 2- 61.32% of the conversations have similar final emotions in the whole dataset
+
+![](images/new_similar.png)
+![](images/new_similar_percent.png)
+
+**Hypothesis 2**
+Case 1- 39.79% of the conversations have negative or no final emotion in the whole dataset
+![](images/new_hyp2.png)
+![](images/new_hypo2_percent.png)
