@@ -87,12 +87,14 @@ This gives us many more dialoges to use in the coordination function.
 Case 1-  61.16% of the conversations have same final emotion in the whole dataset
 ![](images/new_same.png)
 ![](images/new_same_percent.png)
+
 Case 2- 61.32% of the conversations have similar final emotions in the whole dataset
 
 ![](images/new_similar.png)
 ![](images/new_similar_percent.png)
 
 **Hypothesis 2**
+
 Case 1- 39.79% of the conversations have negative or no final emotion in the whole dataset
 ![](images/new_hyp2.png)
 ![](images/new_hypo2_percent.png)
