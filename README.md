@@ -76,7 +76,7 @@ Case 2- 75%
 # New approach
 First we split the individual dialogs into multiple dialogs if the following condition is satisfied:
 
-$$emotion_{i-2} != emotion_{i} {\ \  } and {\ \ }emotion_{i}=emotion_{i-1}$$
+$$emotion_{i-2} != emotion_{i} {\ \  } and {\ \ }emotion_{i}=emotion_{i-1}$$...(1)
 
 This gives us many more dialoges to use in the coordination function.
 
@@ -87,6 +87,10 @@ This gives us many more dialoges to use in the coordination function.
 Case 1-  61.16% of the conversations have same final emotion in the whole dataset
 ![](images/new_same.png)
 ![](images/new_same_percent.png)
+
+What I think that these graphs represent:-
+These graphs represent the number of dialogs which satisfy the hypothesis in the new dataset. What I think they actually show is that they arrange the dialogues according to the coordination scores and the count their numbers according to the hypothesis. Since we have split the dataset according to the equation(1), the readings of the graphs comes out to be the number of dialogues arranged according to their coordination scores.
+
 
 Case 2- 61.32% of the conversations have similar final emotions in the whole dataset
 
